@@ -29,8 +29,8 @@
       </d-row>
 
       <!-- Legend & Chart -->
-      <div ref="legend"></div>
-      <canvas height="120" ref="canvas" style="max-width: 100% !important;"></canvas>
+      <!-- <div ref="legend"></div>
+      <canvas height="120" ref="canvas" style="max-width: 100% !important;"></canvas> -->
 
     </d-card-body>
   </d-card>
@@ -73,7 +73,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'Users Overview',
+      default: 'GDL_CANADA',
     },
     chartData: {
       type: Object,

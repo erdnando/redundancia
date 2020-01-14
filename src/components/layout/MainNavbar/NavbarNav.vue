@@ -30,7 +30,7 @@
             <p>Last week your store’s sales count decreased by <span class="text-danger text-semibold">5.52%</span>. It could have been worse!</p>
           </div>
         </d-dropdown-item>
-        <d-dropdown-item class="notification__all text-center">View all Notifications</d-dropdown-item>
+        <d-dropdown-item class="notification__all text-center">Ver notificaciones</d-dropdown-item>
       </d-collapse>
     </li>
     <li class="nav-item dropdown">
@@ -38,10 +38,8 @@
         <img class="user-avatar rounded-circle mr-2" src="@/assets/images/avatars/0.jpg" alt="User Avatar"> <span class="d-none d-md-inline-block">Sierra Brooks</span>
       </a>
       <d-collapse id="user-actions" class="dropdown-menu dropdown-menu-small">
-        <d-dropdown-item><i class="material-icons">&#xE7FD;</i> Profile</d-dropdown-item>
-        <d-dropdown-item><i class="material-icons">&#xE8B8;</i> Edit Profile</d-dropdown-item>
-        <d-dropdown-item><i class="material-icons">&#xE2C7;</i> Files</d-dropdown-item>
-        <d-dropdown-item><i class="material-icons">&#xE896;</i> Transactions</d-dropdown-item>
+        <d-dropdown-item><i class="material-icons">&#xE7FD;</i> Perfil</d-dropdown-item>
+        <d-dropdown-item><i class="material-icons">&#xE8B8;</i> Editar perfil</d-dropdown-item>
         <d-dropdown-divider />
         <d-dropdown-item href="#" class="text-danger">
           <i class="material-icons text-danger">&#xE879;</i> Logout

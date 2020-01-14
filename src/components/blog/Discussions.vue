@@ -1,5 +1,5 @@
 <template>
-  <d-card class="card-small blog-comments">
+  <d-card class="card-small blog-comments" style="height:400px">
 
     <!-- Card Header -->
     <d-card-header class="border-bottom">
@@ -49,7 +49,7 @@
 
         <!-- View All Comments -->
         <d-col class="text-center view-report">
-          <d-button type="submit" class="btn-white" @click="handleClick('view-all-comments')">View All Comments</d-button>
+          <d-button type="submit" class="btn-white" @click="handleClick('view-all-comments')">Conectar</d-button>
         </d-col>
 
       </d-row>
@@ -71,32 +71,6 @@ const defaultDiscussionsData = [{
     url: '#',
   },
   body: 'Well, the way they make shows is, they make one show ...',
-}, {
-  id: 2,
-  date: '4 days ago',
-  author: {
-    image: require('@/assets/images/avatars/2.jpg'),
-    name: 'John Doe',
-    url: '#',
-  },
-  post: {
-    title: 'Hello World!',
-    url: '#',
-  },
-  body: 'After the avalanche, it took us a week to climb out. Now...',
-}, {
-  id: 3,
-  date: '5 days ago',
-  author: {
-    image: require('@/assets/images/avatars/3.jpg'),
-    name: 'John Doe',
-    url: '#',
-  },
-  post: {
-    title: 'Hello World!',
-    url: '#',
-  },
-  body: 'My money\'s in that office, right? If she start giving me...',
 }];
 
 export default {
@@ -107,7 +81,7 @@ export default {
        */
     title: {
       type: String,
-      default: 'Discussions',
+      default: 'Videos',
     },
     /**
        * The discussions data.

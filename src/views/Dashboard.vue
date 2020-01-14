@@ -1,46 +1,40 @@
 <template>
-  <d-container fluid class="main-content-container px-4">
+  <d-container fluid class="main-content-container px-2">
     <!-- Page Header -->
-    <d-row no-gutters class="page-header py-4">
+    <d-row no-gutters class="page-header py-2">
       <d-col col sm="4" class="text-center text-sm-left mb-4 mb-sm-0">
         <span class="text-uppercase page-subtitle">Dashboard</span>
-        <h3 class="page-title">Personal Blog</h3>
       </d-col>
     </d-row>
 
     <!-- Small Stats Blocks -->
     <d-row>
-      <d-col lg v-for="(stats, idx) in smallStats" :key="idx" class="mb-4">
+      <d-col lg v-for="(stats, idx) in smallStats" :key="idx" class="mb-3">
         <small-stats :id="`small-stats-${idx}`" variation="1" :chart-data="stats.datasets" :label="stats.label" :value="stats.value" :percentage="stats.percentage" :increase="stats.increase" :decrease="stats.decrease" />
       </d-col>
     </d-row>
 
     <d-row>
       <!-- Users Overview -->
-      <d-col lg="8" md="6" sm="12" class="mb-4">
+      <d-col lg="8" md="6" sm="12" class="mb-3">
         <bo-users-overview />
       </d-col>
 
       <!-- Users by Device (lite) -->
-      <d-col lg="4" md="6" sm="12" class="mb-4">
+      <d-col lg="4" md="6" sm="12" class="mb-3">
         <bo-users-by-device />
       </d-col>
     </d-row>
 
     <d-row>
-      <!-- New Draft -->
-      <d-col lg="4" md="6" sm="12" class="mb-4">
+      <!-- Logs -->
+      <d-col lg="8" md="12" sm="12" class="mb-8">
         <bo-new-draft />
       </d-col>
 
-      <!-- Discussions -->
-      <d-col lg="5" md="12" sm="12" class="mb-4">
+      <!-- Videos -->
+      <d-col lg="4" md="6" sm="12" class="mb-4">
         <bo-discussions @approve="handleApprove" @reject="handleReject" @edit="handleEdit" @view-all-comments="handleViewAllComments" />
-      </d-col>
-
-      <!-- Top Referrals -->
-      <d-col lg="3" md="12" sm="12" class="mb-4">
-        <bo-top-referrals />
       </d-col>
     </d-row>
   </d-container>
@@ -48,7 +42,6 @@
 
 <script>
 import SmallStats from '@/components/common/SmallStats.vue';
-import TopReferrals from '@/components/common/TopReferrals.vue';
 import UsersOverview from '@/components/blog/UsersOverview.vue';
 import UsersByDevice from '@/components/blog/UsersByDeviceLite.vue';
 import NewDraft from '@/components/blog/NewDraft.vue';
@@ -61,7 +54,6 @@ export default {
     boUsersByDevice: UsersByDevice,
     boNewDraft: NewDraft,
     boDiscussions: Discussions,
-    boTopReferrals: TopReferrals,
   },
   data() {
     return {
@@ -88,7 +80,7 @@ export default {
   computed: {
     smallStats() {
       return [{
-        label: 'Posts',
+        label: 'Antes',
         value: '2,390',
         percentage: '4.7%',
         increase: true,
@@ -102,7 +94,7 @@ export default {
           data: [1, 2, 1, 3, 5, 4, 7],
         }],
       }, {
-        label: 'Pages',
+        label: 'Durante',
         value: '182',
         percentage: '12.4',
         increase: true,
@@ -116,7 +108,7 @@ export default {
           data: [1, 2, 3, 3, 3, 4, 4],
         }],
       }, {
-        label: 'Comments',
+        label: 'Despues',
         value: '8,147',
         percentage: '3.8%',
         increase: false,
@@ -131,7 +123,7 @@ export default {
           data: [2, 3, 3, 3, 4, 3, 3],
         }],
       }, {
-        label: 'New Customers',
+        label: 'Ejecuciones',
         value: '29',
         percentage: '2.71%',
         increase: false,
@@ -146,7 +138,7 @@ export default {
           data: [1, 7, 1, 3, 1, 4, 8],
         }],
       }, {
-        label: 'Subscribers',
+        label: 'Fecha',
         value: '17,281',
         percentage: '2.4%',
         increase: false,

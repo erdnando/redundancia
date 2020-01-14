@@ -1,5 +1,5 @@
 <template>
-  <d-card class="card-small h-100">
+  <d-card class="card-small " style="height:400px">
 
     <!-- Component Header -->
     <d-card-header class="border-bottom">
@@ -11,17 +11,17 @@
 
         <!-- Title -->
         <div class="form-group">
-          <d-input class="form-control" placeholder="Brave New World" />
+          <d-input class="form-control" placeholder="Logs..." />
         </div>
 
         <!-- Body -->
         <div class="form-group">
-          <d-textarea class="form-control" placeholder="Words can be like X-rays if you use them properly..." />
+          <d-textarea class="form-control" placeholder="2019-09-27 15:10:58 GMT LOG:  database system was shut down at 2019-09-27 00:00:25 GMT 2019-09-27 15:10:58 GMT LOG:  MultiXact member wraparound protections are now enabled 2019-09-27 15:10:58 GMT LOG:  database system is ready to accept connections 2019-09-27 15:10:58 GMT LOG:  autovacuum launcher started" />
         </div>
 
         <!-- Create Draft -->
         <div class="form-group">
-          <d-button class="btn-accent" type="submit">Create Draft</d-button>
+          <d-button class="btn-accent" type="submit">Exportar log</d-button>
         </div>
 
       </d-form>
@@ -39,7 +39,7 @@ export default {
        */
     title: {
       type: String,
-      default: 'New Draft',
+      default: 'Logs',
     },
   },
 };

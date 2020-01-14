@@ -151,7 +151,7 @@ export default {
     },
     computedCanvasHeight() {
       if (this.variation === '1') {
-        return 120;
+        return 130;
       }
 
       return 60;
