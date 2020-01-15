@@ -1,12 +1,5 @@
 export default function () {
   return [{
-    title: 'Dashboard',
-    to: {
-      name: 'dashboard',
-    },
-    htmlBefore: '<i class="material-icons">edit</i>',
-    htmlAfter: '',
-  }, {
     title: 'Validaciones',
     htmlBefore: '<i class="material-icons">vertical_split</i>',
     to: {

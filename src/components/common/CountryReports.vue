@@ -39,7 +39,7 @@
 
         <!-- View Full Report -->
         <d-col class="text-right view-report">
-          <a href="#">View full report &rarr;</a>
+          <a href="#">View full reportxx &rarr;</a>
         </d-col>
 
       </d-row>

@@ -3,7 +3,7 @@
     <!-- Page Header -->
     <d-row no-gutters class="page-header py-2">
       <d-col col sm="4" class="text-center text-sm-left mb-4 mb-sm-0">
-        <span class="text-uppercase page-subtitle">Dashboard</span>
+        <span class="text-uppercase page-subtitle">Ejecución</span>
       </d-col>
     </d-row>
 
@@ -61,7 +61,21 @@ export default {
         from: null,
         to: null,
       },
+      cronometro: {
+        tiempo: {
+          hora: 0,
+          minuto: 0,
+          segundo: 0,
+        },
+        listaDeTiempos: [],
+        nombre: 'Cronometro',
+        tiempoActivo: false,
+        intervalo: null,
+      },
     };
+  },
+  created() {
+    this.iniciarCronometro();
   },
   methods: {
     handleApprove(id) {
@@ -75,6 +89,30 @@ export default {
     },
     handleViewAllComments() {
       alert('Viewing all comments!'); // eslint-disable-line no-alert
+    },
+    iniciarCronometro() {
+      setInterval(() => {
+        this.incrementarTiempo();
+      }, 1000);
+    },
+    addZero(valor) {
+      if (valor < 10) return `0${valor}`;
+      return valor;
+    },
+    incrementarTiempo() {
+      const obj = this.cronometro;
+      // eslint-disable-next-line no-plusplus
+      obj.tiempo.segundo++;
+      if (obj.tiempo.segundo === 60) {
+        // eslint-disable-next-line no-plusplus
+        obj.tiempo.minuto++;
+        obj.tiempo.segundo = 0;
+      }
+      if (obj.tiempo.minuto === 60) {
+        // eslint-disable-next-line no-plusplus
+        obj.tiempo.hora++;
+        obj.tiempo.minuto = 0;
+      }
     },
   },
   computed: {
@@ -138,8 +176,8 @@ export default {
           data: [1, 7, 1, 3, 1, 4, 8],
         }],
       }, {
-        label: 'Fecha',
-        value: '17,281',
+        label: 'Contador',
+        value: `${this.addZero(this.cronometro.tiempo.minuto)}:${this.addZero(this.cronometro.tiempo.minuto)}:${this.addZero(this.cronometro.tiempo.segundo)}`,
         percentage: '2.4%',
         increase: false,
         decrease: true,

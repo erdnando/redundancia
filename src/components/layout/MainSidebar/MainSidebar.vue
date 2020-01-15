@@ -14,17 +14,58 @@
         </nav>
       </div>
 
-      <form action="#" class="main-sidebar__search w-100 border-right d-sm-flex d-md-none d-lg-none">
+      <!-- <form action="#" class="main-sidebar__search w-100 border-right d-sm-flex d-md-none d-lg-none">
         <div class="input-group input-group-seamless ml-3">
           <div class="input-group-prepend">
             <div class="input-group-text">
               <i class="fas fa-search"></i>
+              xxxxxxxxxxxx
             </div>
           </div>
           <input class="navbar-search form-control" type="text" placeholder="Search for something..." aria-label="Search">
         </div>
-      </form>
+      </form> -->
 
+      <div>
+        <form class="example" action="#" style="margin:auto;max-width:200px">
+          <input type="text" placeholder="Search.." style="width:148px;margin-left:5px;border-radius:14px;height:22px" name="search2">
+          <button type="submit"><i class="fa fa-search"></i></button>
+
+           <div class="row">
+      <div class="col">
+        <div class="card card-small mb-4">
+          <!-- <div class="card-header border-bottom">
+            <h6 class="m-0">Configuraciones</h6>
+          </div> -->
+          <div class="card-body p-0 pb-3 text-center">
+            <table class="table mb-0">
+              <thead class="bg-light">
+                <tr>
+                  <th scope="col" class="border-0">Configuraciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <a href="dashboard">GDL_CANADA</a>
+                    </td>
+                </tr>
+                <tr>
+                  <td><a href="dashboard">PACHUCA SOTO</a></td>
+                </tr>
+                <tr>
+                  <td><a href="dashboard">PACHUCA CENTRO 2</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+        </form>
+      </div>
       <div class="nav-wrapper">
           <d-nav class="flex-column">
             <li v-for="(item, navItemIdx) in items" :key="navItemIdx" class="nav-item dropdown">
