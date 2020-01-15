@@ -31,7 +31,7 @@
       <!-- Legend & Chart -->
       <!-- <div ref="legend"></div>
       <canvas height="120" ref="canvas" style="max-width: 100% !important;"></canvas> -->
-      <img src="/aro.jpg" style="width:60%" />
+      <img src="/aro4.png" style="width:70%" />
 
     </d-card-body>
   </d-card>

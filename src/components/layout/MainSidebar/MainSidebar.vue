@@ -47,7 +47,7 @@
               <tbody>
                 <tr>
                   <td>
-                    <a href="dashboard">GDL_CANADA</a>
+                    <a href="dashboard">GDL_CANADA (corriendo...)</a>
                     </td>
                 </tr>
                 <tr>

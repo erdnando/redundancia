@@ -119,8 +119,8 @@ export default {
     smallStats() {
       return [{
         label: 'Antes',
-        value: '2,390',
-        percentage: '4.7%',
+        value: '100%',
+        percentage: 'Terminado',
         increase: true,
         labels: ['Label', 'Label', 'Label', 'Label', 'Label', 'Label'],
         datasets: [{
@@ -129,12 +129,12 @@ export default {
           borderWidth: 1.5,
           backgroundColor: 'rgba(0, 184, 216, 0.1)',
           borderColor: 'rgb(0, 184, 216)',
-          data: [1, 2, 1, 3, 5, 4, 7],
+          data: [1, 3, 4, 6, 7, 8, 0],
         }],
       }, {
         label: 'Durante',
-        value: '182',
-        percentage: '12.4',
+        value: '48%',
+        percentage: 'Activo',
         increase: true,
         labels: ['Label', 'Label', 'Label', 'Label', 'Label', 'Label'],
         datasets: [{
@@ -143,12 +143,12 @@ export default {
           borderWidth: 1.5,
           backgroundColor: 'rgba(23,198,113,0.1)',
           borderColor: 'rgb(23,198,113)',
-          data: [1, 2, 3, 3, 3, 4, 4],
+          data: [1, 2, 2, 1, 1, 1, 1],
         }],
       }, {
         label: 'Despues',
-        value: '8,147',
-        percentage: '3.8%',
+        value: '0%',
+        percentage: 'NA%',
         increase: false,
         decrease: true,
         labels: ['Label', 'Label', 'Label', 'Label', 'Label', 'Label'],
@@ -158,12 +158,12 @@ export default {
           borderWidth: 1.5,
           backgroundColor: 'rgba(255,180,0,0.1)',
           borderColor: 'rgb(255,180,0)',
-          data: [2, 3, 3, 3, 4, 3, 3],
+          data: [1, 1, 1, 1, 1, 1, 1],
         }],
       }, {
         label: 'Ejecuciones',
-        value: '29',
-        percentage: '2.71%',
+        value: '2 de 3',
+        percentage: '49%%',
         increase: false,
         decrease: true,
         labels: ['Label', 'Label', 'Label', 'Label', 'Label', 'Label'],
@@ -173,7 +173,7 @@ export default {
           borderWidth: 1.5,
           backgroundColor: 'rgba(255,65,105,0.1)',
           borderColor: 'rgb(255,65,105)',
-          data: [1, 7, 1, 3, 1, 4, 8],
+          data: [1, 1, 1, 0, 0, 0, 0],
         }],
       }, {
         label: 'Contador',

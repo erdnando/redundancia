@@ -73,10 +73,8 @@
         <!-- Time Frame -->
         <d-col>
           <d-select size="sm" value="last-week" style="max-width: 130px;">
-            <option value="last-week">Last Week</option>
-            <option value="today">Today</option>
-            <option value="last-month">Last Month</option>
-            <option value="last-year">Last Year</option>
+            <option value="last-week">Nivel detalle</option>
+            <option value="today">Nivel simple</option>
           </d-select>
         </d-col>
 
@@ -141,7 +139,7 @@ export default {
        */
     title: {
       type: String,
-      default: 'En ejecución',
+      default: 'En ejecución: (N3) / Protocolos / BGP ',
     },
   },
   mounted() {
