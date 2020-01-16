@@ -10,8 +10,8 @@
       <!-- Page Header -->
       <d-row no-gutters class="page-header py-2 pb-4 mb-3 border-bottom">
         <d-col col sm="4" class="text-center text-sm-left mb-4 mb-sm-0">
-          <span class="text-uppercase page-subtitle">Overview</span>
-          <h3 class="page-title">Components</h3>
+          <span class="text-uppercase page-subtitle">Configuración de endpoints</span>
+          <h3 class="page-title">Endpoints</h3>
         </d-col>
       </d-row>
 

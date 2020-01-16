@@ -3,10 +3,10 @@
     <!-- Error -->
     <div class="error">
       <div class="error__content">
-        <h2>500</h2>
-        <h3>Something went wrong!</h3>
-        <p>There was a problem on our end. Please try again later.</p>
-        <d-button pill>&larr; Go Back</d-button>
+        <h2>200</h2>
+        <h3>Historial</h3>
+        <p>Detalle de las ejecuciones.</p>
+        <d-button pill>&larr; Regresar</d-button>
       </div>
     </div>
   </d-container>

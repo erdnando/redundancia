@@ -4,8 +4,8 @@
     <d-row no-gutters class="page-header py-4">
       <!-- Page Title -->
       <d-col col sm="4" class="text-center text-sm-left mb-4 mb-sm-0">
-        <span class="text-uppercase page-subtitle">Blog Posts</span>
-        <h3 class="page-title">Add New Post</h3>
+        <span class="text-uppercase page-subtitle">Configuración de equipos</span>
+        <h3 class="page-title">Equipos</h3>
       </d-col>
     </d-row>
 
