@@ -31,7 +31,21 @@
       <!-- Legend & Chart -->
       <!-- <div ref="legend"></div>
       <canvas height="120" ref="canvas" style="max-width: 100% !important;"></canvas> -->
-      <img src="/aro4.png" style="width:70%" />
+      <img class="map" src="/anillo6-white.png" style="zoom:50%;" usemap="#image-map"/>
+      <map name="image-map" id="image-map">
+        <area  target="_blank" alt="n2" title="n2" href="www.google.com" coords="354,482,269,534,183,479,259,433" shape="poly">
+        <area  target="_blank" alt="n1" title="n1" href="www.google.com" coords="318,828,406,877,317,926,236,870" shape="poly">
+        <area target="_blank" alt="ln-n1-n2" title="ln-n1-n2" href="www.google.com" coords="272,845,284,840,118,741,378,587,284,530,269,538,361,588,98,743" shape="poly">
+        <area target="_blank" alt="n3" title="n3" href="www.google.com" coords="516,281,602,336,690,287,591,232" shape="poly">
+        <area target="_blank" alt="n4" title="n4" href="www.google.com" coords="964,263,1049,215,1139,265,1056,313" shape="poly">
+        <area target="_blank" alt="n5" title="n5" href="www.google.com" coords="1204,530,1293,583,1211,631,1125,577" shape="poly">
+        <area target="_blank" alt="n6" title="n6" href="www.google.com" coords="879,805,963,858,879,903,796,854" shape="poly">
+        <area target="_blank" alt="ln-n2-n3" title="ln-n2-n3" href="www.google.com" coords="319,458,563,314,573,321,329,464" shape="poly">
+        <area target="_blank" alt="ln-n3-n4" title="ln-n3-n4" href="www.google.com" coords="682,280,686,284,766,243,974,344,1038,309,1033,305,976,337,766,236,682,280" shape="poly">
+        <area target="_blank" alt="ln-n4-n5" title="ln-n4-n5" href="www.google.com" coords="1099,291,1195,344,1038,437,1195,529,1202,526,1052,437,1204,344,1102,284" shape="poly">
+        <area target="_blank" alt="ln-n5-n6" title="ln-n5-n6" href="www.google.com" coords="1195,623,1031,706,1143,763,963,847,974,854,1154,763,1047,706,1202,626" shape="poly">
+        <area target="_blank" alt="ln-n6-n7" title="ln-n6-n7" href="www.google.com" coords="869,899,620,1020,381,899,374,903,618,1026,874,901" shape="poly">
+    </map>
 
     </d-card-body>
   </d-card>
@@ -160,3 +174,12 @@ export default {
 };
 </script>
 
+<style scoped>
+.image{
+  position: relative;
+}
+.image a{
+  display: block;
+  position: absolute;
+}
+</style>
