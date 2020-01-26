@@ -133,10 +133,9 @@ const PostsListOne = [{
   authorAvatar: require('@/assets/images/avatars/3.jpg'),
   title: 'It so numerous if he may outlived disposal',
   body: 'How but sons mrs lady when. Her especially are unpleasant out alteration continuing unreserved ready road market resolution...',
-  date: '29 February 2019',
+  date: '29 February 2019'
 }];
-
-  // Second Row of posts
+// Second Row of posts
 const PostsListTwo = [{
   backgroundImage: require('@/assets/images/content-management/5.jpeg'),
   category: 'Travel',
@@ -186,7 +185,7 @@ const PostsListFour = [{
   categoryUrl: '#',
   title: 'Extremity so attending objection as engrossed',
   body: 'Pursuit chamber as elderly amongst on. Distant however warrant farther to of. My justice wishing prudent waiting in be...',
-  date: '29 February 2019',
+  date: '29 February 2019'
 }, {
   backgroundImage: require('@/assets/images/content-management/8.jpeg'),
   author: 'Chris Jamie',
@@ -195,7 +194,7 @@ const PostsListFour = [{
   categoryUrl: '#',
   title: 'Bed sincerity yet therefore forfeited his',
   body: 'Speaking throwing breeding betrayed children my to. Me marianne no he horrible produced ye. Sufficient unpleasing and...',
-  date: '29 February 2019',
+  date: '29 February 2019'
 }, {
   backgroundImage: require('@/assets/images/content-management/9.jpeg'),
   author: 'Monica Jordan',
@@ -204,7 +203,7 @@ const PostsListFour = [{
   categoryUrl: '#',
   title: 'Object remark lively all did feebly excuse our',
   body: 'Morning prudent removal an letters by. On could my in order never it. Or excited certain sixteen it to parties colonel not seeing...',
-  date: '29 February 2019',
+  date: '29 February 2019'
 }, {
   backgroundImage: require('@/assets/images/content-management/10.jpeg'),
   author: 'Monica Jordan',
@@ -213,7 +212,7 @@ const PostsListFour = [{
   categoryUrl: '#',
   title: 'His followed carriage proposal entrance',
   body: 'For county now sister engage had season better had waited. Occasional mrs interested far expression directly as regard...',
-  date: '29 February 2019',
+  date: '29 February 2019'
 }];
 
 export default {
@@ -224,7 +223,6 @@ export default {
       PostsListThree,
       PostsListFour,
     };
-  },
+  }
 };
 </script>
-

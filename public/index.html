@@ -13,8 +13,19 @@
     <!-- Add maphilight plugin -->
     <script type="text/javascript" src="https://davidlynch.org/projects/maphilight/jquery.maphilight.js"></script>
     <!-- Activate maphilight plugin -->
+    <script type="text/javascript" src="jquery.maphilight.js"></script>
     <script type="text/javascript">$(function() {
             $('.map').maphilight();
+        });
+        $(function() {
+          var table = document.getElementById('RingsTM').getElementsByClassName('map'); 
+        for(var i=0; i<table.length; i++){
+            if(table[i].tagName=='DIV'){
+              if(table[i].style.display=='block'){
+                table[i].style.display ='none'
+              }
+            }
+        }
         });
 </script>
     <title>Dashboard de pruebas de redundancia</title>

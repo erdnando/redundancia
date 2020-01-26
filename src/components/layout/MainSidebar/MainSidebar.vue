@@ -37,7 +37,7 @@
           <!-- <div class="card-header border-bottom">
             <h6 class="m-0">Configuraciones</h6>
           </div> -->
-          <div class="card-body p-0 pb-3 text-center">
+          <div class="card-body p-0 pb-3 text-center" id="InicConfiguraciones">
             <table class="table mb-0">
               <thead class="bg-light">
                 <tr>
@@ -47,14 +47,14 @@
               <tbody>
                 <tr>
                   <td>
-                    <a href="dashboard">GDL_CANADA (corriendo...)</a>
+                    <a href="#" v-on:click="Iniciar('2','dvAnillo2')">GDL_CANADA (corriendo...)</a>
                     </td>
                 </tr>
                 <tr>
-                  <td><a href="dashboard">PACHUCA SOTO</a></td>
+                  <td><a href="#" v-on:click="Iniciar('3','dvAnillo3')">PACHUCA SOTO</a></td>
                 </tr>
                 <tr>
-                  <td><a href="dashboard">PACHUCA CENTRO 2</a></td>
+                  <td><a href="#" v-on:click="Iniciar('4','dvAnillo4')">PACHUCA CENTRO 2</a></td>
                 </tr>
               </tbody>
             </table>
@@ -118,6 +118,35 @@ export default {
   methods: {
     handleToggleSidebar() {
       this.sidebarVisible = !this.sidebarVisible;
+    },
+    Iniciar: function (event,mapAnillo) {
+      var table = document.getElementById('RingsTM').getElementsByClassName('map') 
+      for(var i=0; i<table.length; i++){
+          if(table[i].tagName=='DIV'){
+            if(table[i].style.display=='block'){
+              table[i].style.display ='none'
+            }
+          }
+      }
+
+      switch(event){
+        case "2":
+          //alert("Hola");
+          document.getElementById("dvAnillo2").style.display="block";
+          document.getElementById("2N1").click();
+          break;
+        case "3":
+          //alert("Hola");
+          document.getElementById("dvAnillo3").style.display="block";
+          document.getElementById("3N1").click();
+          break;
+        case "4":
+          //alert("Hola");
+          document.getElementById("dvAnillo4").style.display="block";
+          document.getElementById("4N1").click();
+          break;
+      }
+      
     },
   },
 };
