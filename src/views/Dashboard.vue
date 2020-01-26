@@ -6,7 +6,20 @@
         <span class="text-uppercase page-subtitle">Ejecución</span>
       </d-col>
     </d-row>
-
+    <vue-tiny-tabs id="mytabs" :anchor="false" :closable="true" :hideTitle="false" @on-close="onClose" @on-before="onBefore" @on-after="onAfter">
+      <div class="section" id="example">
+        <h3 class="title">Example code</h3>
+        <h3>Javascript</h3>
+      </div>
+      <div class="section" id="options">
+        <h3 class="title">Options table</h3>
+        <h3>Options</h3>
+      </div>
+      <div class="section" id="components">
+        <h3 class="title">Components</h3>
+        <h3>Options</h3>
+      </div>
+    </vue-tiny-tabs>
     <!-- Small Stats Blocks -->
     <d-row>
       <d-col lg v-for="(stats, idx) in smallStats" :key="idx" class="mb-3">
@@ -46,6 +59,7 @@ import UsersOverview from '@/components/blog/UsersOverview.vue';
 import UsersByDevice from '@/components/blog/UsersByDeviceLite.vue';
 import NewDraft from '@/components/blog/NewDraft.vue';
 import Discussions from '@/components/blog/Discussions.vue';
+import VueTinyTabs from 'vue-tiny-tabs';
 
 export default {
   components: {
@@ -54,6 +68,7 @@ export default {
     boUsersByDevice: UsersByDevice,
     boNewDraft: NewDraft,
     boDiscussions: Discussions,
+    VueTinyTabs
   },
   data() {
     return {
@@ -195,4 +210,36 @@ export default {
   },
 };
 </script>
+<style scoped>
+.tinytabs .tabs {
+	margin-left: 15px;
+	display: flex;
+	flex-flow: row wrap;
+}
+.tinytabs .tabs .tab .close {
+	padding-left: 5px;
+}
+.tinytabs .tabs .tab {
+	margin: 0 3px 0 0;
+	background: #e1e1e1;
+	display: block;
+	padding: 6px 15px;
+	text-decoration: none;
+	color: #666;
+	font-weight: bold;
+	border-radius: 3px 3px 0 0;
+}
+.tinytabs .section {
+	background: #f1f1f1;
+	overflow: hidden;
+	padding: 15px;
+	clear: both;
+	border-radius: 3px;
+}
+.tinytabs .tab.sel {
+	background: #f1f1f1;
+	color: #333;
+	text-shadow: none;
+}
+</style>
 
