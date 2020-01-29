@@ -6,7 +6,7 @@
         <span class="text-uppercase page-subtitle">Ejecución</span>
       </d-col>
     </d-row>  
-    <AddTabOcean></AddTabOcean>
+    <AddTabOcean :can-I="childState" v-on:increment="lockChild"></AddTabOcean>
     <!-- Small Stats Blocks -->
     
   </d-container>
@@ -22,9 +22,37 @@ import AddTabOcean from '../components/TabsPersonalizado/AddTabsOcean.vue';
 
 export default {
   components: {
+    
     Vue,
+    //TabsOcean,
     AddTabOcean
   },
+  data() {
+    return {
+      dateRange: {
+        from: null,
+        to: null,
+      },
+      cronometro: {
+        tiempo: {
+          hora: 0,
+          minuto: 0,
+          segundo: 0,
+        },
+        listaDeTiempos: [],
+        nombre: 'Cronometro',
+        tiempoActivo: false,
+        intervalo: null,
+      },
+    };
+  },
+  created() {
+    this.iniciarCronometro();
+  },
+  methods: {
+    
+  },
+  
 };
 
 //Vue.use(VueTabs);
