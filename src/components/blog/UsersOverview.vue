@@ -28,6 +28,8 @@
 
       </d-row>
 
+      {{divImg}}
+
       <!-- Legend & Chart -->
       <!-- <div ref="legend"></div>
       <canvas height="120" ref="canvas" style="max-width: 100% !important;"></canvas> -->
@@ -135,10 +137,11 @@ const defaultChartData = {
 
 export default {
   name: 'users-overview',
+  template:'',
   props: {
     title: {
       type: String,
-      default: 'GDL_CANADA',
+      default: '',
     },
     chartData: {
       type: Object,
@@ -153,7 +156,14 @@ export default {
         from: null,
         to: null,
       },
+      divImg:'',
     };
+  },
+  methods:{
+    AgregaImg(event,mapAnillo){
+      alert('holauser');
+      this.divImg='user2';
+    },
   },
   mounted() {
     const chartOptions = {
@@ -219,7 +229,13 @@ const BlogUsersOverview = new Chart(this.$refs.canvas, {
     buoMeta.data[this.chartData.datasets[0].data.length - 1]._model.radius = 0;
     // Render the chart.
     BlogUsersOverview.render();
-  },  
+  },
+  created() {
+    this.$eventHub.$on('agregaimg', this.AgregaImg);
+  },
+  beforeDestroy() {
+    this.$eventHub.$off('agregaimg');
+  }, 
 };
 </script>
 

@@ -5,70 +5,27 @@
       <d-col col sm="4" class="text-center text-sm-left mb-4 mb-sm-0">
         <span class="text-uppercase page-subtitle">Ejecución</span>
       </d-col>
-    </d-row>
-    <vue-tiny-tabs id="mytabs" :anchor="false" :closable="true" :hideTitle="false" @on-close="onClose" @on-before="onBefore" @on-after="onAfter">
-      <div class="section" id="example">
-        <h3 class="title">Example code</h3>
-        <h3>Javascript</h3>
-      </div>
-      <div class="section" id="options">
-        <h3 class="title">Options table</h3>
-        <h3>Options</h3>
-      </div>
-      <div class="section" id="components">
-        <h3 class="title">Components</h3>
-        <h3>Options</h3>
-      </div>
-    </vue-tiny-tabs>
+    </d-row>  
+    <AddTabOcean></AddTabOcean>
     <!-- Small Stats Blocks -->
-    <d-row>
-      <d-col lg v-for="(stats, idx) in smallStats" :key="idx" class="mb-3">
-        <small-stats :id="`small-stats-${idx}`" variation="1" :chart-data="stats.datasets" :label="stats.label" :value="stats.value" :percentage="stats.percentage" :increase="stats.increase" :decrease="stats.decrease" />
-      </d-col>
-    </d-row>
-
-    <d-row>
-      <!-- Users Overview -->
-      <d-col lg="8" md="6" sm="12" class="mb-3">
-        <bo-users-overview />
-      </d-col>
-
-      <!-- Users by Device (lite) -->
-      <d-col lg="4" md="6" sm="12" class="mb-3">
-        <bo-users-by-device />
-      </d-col>
-    </d-row>
-
-    <d-row>
-      <!-- Logs -->
-      <d-col lg="8" md="12" sm="12" class="mb-8">
-        <bo-new-draft />
-      </d-col>
-
-      <!-- Videos -->
-      <d-col lg="4" md="6" sm="12" class="mb-4">
-        <bo-discussions @approve="handleApprove" @reject="handleReject" @edit="handleEdit" @view-all-comments="handleViewAllComments" />
-      </d-col>
-    </d-row>
+    
   </d-container>
 </template>
 
 <script>
-import SmallStats from '@/components/common/SmallStats.vue';
-import UsersOverview from '@/components/blog/UsersOverview.vue';
-import UsersByDevice from '@/components/blog/UsersByDeviceLite.vue';
-import NewDraft from '@/components/blog/NewDraft.vue';
-import Discussions from '@/components/blog/Discussions.vue';
-import VueTinyTabs from 'vue-tiny-tabs';
+import Vue from 'vue';
+//import TabsOcean from '../components/TabsPersonalizado/TabsOcean.vue';
+// import {VueTabs, VTab} from 'vue-nav-tabs';
+// import 'vue-nav-tabs/themes/vue-tabs.css';
+import AddTabOcean from '../components/TabsPersonalizado/AddTabsOcean.vue';
+
 
 export default {
   components: {
-    SmallStats,
-    boUsersOverview: UsersOverview,
-    boUsersByDevice: UsersByDevice,
-    boNewDraft: NewDraft,
-    boDiscussions: Discussions,
-    VueTinyTabs
+    
+    Vue,
+    //TabsOcean,
+    AddTabOcean
   },
   data() {
     return {
@@ -209,37 +166,9 @@ export default {
     },
   },
 };
-</script>
-<style scoped>
-.tinytabs .tabs {
-	margin-left: 15px;
-	display: flex;
-	flex-flow: row wrap;
-}
-.tinytabs .tabs .tab .close {
-	padding-left: 5px;
-}
-.tinytabs .tabs .tab {
-	margin: 0 3px 0 0;
-	background: #e1e1e1;
-	display: block;
-	padding: 6px 15px;
-	text-decoration: none;
-	color: #666;
-	font-weight: bold;
-	border-radius: 3px 3px 0 0;
-}
-.tinytabs .section {
-	background: #f1f1f1;
-	overflow: hidden;
-	padding: 15px;
-	clear: both;
-	border-radius: 3px;
-}
-.tinytabs .tab.sel {
-	background: #f1f1f1;
-	color: #333;
-	text-shadow: none;
-}
-</style>
 
+//Vue.use(VueTabs);
+</script>
+<style>
+@import '../../public/tabs-component.css';
+</style>

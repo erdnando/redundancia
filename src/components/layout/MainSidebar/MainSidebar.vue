@@ -30,40 +30,37 @@
         <form class="example" action="#" style="margin:auto;max-width:200px">
           <input type="text" placeholder="Search.." style="width:148px;margin-left:5px;border-radius:14px;height:22px" name="search2">
           <button type="submit"><i class="fa fa-search"></i></button>
-
            <div class="row">
-      <div class="col">
-        <div class="card card-small mb-4">
-          <!-- <div class="card-header border-bottom">
-            <h6 class="m-0">Configuraciones</h6>
-          </div> -->
-          <div class="card-body p-0 pb-3 text-center" id="InicConfiguraciones">
-            <table class="table mb-0">
-              <thead class="bg-light">
-                <tr>
-                  <th scope="col" class="border-0">Configuraciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <a href="#" v-on:click="Iniciar('2','dvAnillo2')">GDL_CANADA (corriendo...)</a>
-                    </td>
-                </tr>
-                <tr>
-                  <td><a href="#" v-on:click="Iniciar('3','dvAnillo3')">PACHUCA SOTO</a></td>
-                </tr>
-                <tr>
-                  <td><a href="#" v-on:click="Iniciar('4','dvAnillo4')">PACHUCA CENTRO 2</a></td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="col">
+              <div class="card card-small mb-4">
+                <!-- <div class="card-header border-bottom">
+                  <h6 class="m-0">Configuraciones</h6>
+                </div> -->
+                <div class="card-body p-0 pb-3 text-center" id="InicConfiguraciones">
+                  <table class="table mb-0">
+                    <thead class="bg-light">
+                      <tr>
+                        <th scope="col" class="border-0">Configuraciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <a href="#" @click="Iniciar('2','GDL_CANADA')">GDL_CANADA (corriendo...)</a>
+                          </td>
+                      </tr>
+                      <tr>
+                        <td><a href="#" v-on:click="Iniciar('3','dvAnillo3')">PACHUCA SOTO</a></td>
+                      </tr>
+                      <tr>
+                        <td><a href="#" v-on:click="Iniciar('4','dvAnillo4')">PACHUCA CENTRO 2</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-
         </form>
       </div>
       <div class="nav-wrapper">
@@ -86,8 +83,12 @@
 </template>
 
 <script>
+import AddTabOcean from '../../TabsPersonalizado/AddTabsOcean.vue';
 export default {
   name: 'main-sidebar',
+  components: {
+    AddTabOcean
+  },
   props: {
     /**
       * Whether to hide the logo text, or not.
@@ -120,32 +121,34 @@ export default {
       this.sidebarVisible = !this.sidebarVisible;
     },
     Iniciar: function (event,mapAnillo) {
-      var table = document.getElementById('RingsTM').getElementsByClassName('map') 
-      for(var i=0; i<table.length; i++){
-          if(table[i].tagName=='DIV'){
-            if(table[i].style.display=='block'){
-              table[i].style.display ='none'
-            }
-          }
-      }
+      //this.$refs.childRef.childMethod('addtab');
+      this.$eventHub.$emit('addtab', event,mapAnillo);
+      // var table = document.getElementById('RingsTM').getElementsByClassName('map') 
+      // for(var i=0; i<table.length; i++){
+      //     if(table[i].tagName=='DIV'){
+      //       if(table[i].style.display=='block'){
+      //         table[i].style.display ='none'
+      //       }
+      //     }
+      // }
 
-      switch(event){
-        case "2":
-          //alert("Hola");
-          document.getElementById("dvAnillo2").style.display="block";
-          document.getElementById("2N1").click();
-          break;
-        case "3":
-          //alert("Hola");
-          document.getElementById("dvAnillo3").style.display="block";
-          document.getElementById("3N1").click();
-          break;
-        case "4":
-          //alert("Hola");
-          document.getElementById("dvAnillo4").style.display="block";
-          document.getElementById("4N1").click();
-          break;
-      }
+      // switch(event){
+      //   case "2":
+      //     //alert("Hola");
+      //     document.getElementById("dvAnillo2").style.display="block";
+      //     document.getElementById("2N1").click();
+      //     break;
+      //   case "3":
+      //     //alert("Hola");
+      //     document.getElementById("dvAnillo3").style.display="block";
+      //     document.getElementById("3N1").click();
+      //     break;
+      //   case "4":
+      //     //alert("Hola");
+      //     document.getElementById("dvAnillo4").style.display="block";
+      //     document.getElementById("4N1").click();
+      //     break;
+      // }
       
     },
   },
