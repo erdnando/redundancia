@@ -1,40 +1,41 @@
 <template>
     <div id="AddTabOcean">
       <vue-tabs>
-          <v-tab v-for="tab in tabs" :key="tab">
-            <div slot="title">{{tab}} <span @click.stop="removetab(index)" class="ti-close tab-close"></span></div>
-            <section v-show="isActive" :aria-hidden="! isActive" class="tabs-component-panel" :id="computedId" role="tabpanel">
+          <v-tab v-for="(tab) in tabs" :key="tab.id">
+              <!-- pestanias -->
+            <div slot="title">{{tab.nombre}} <span @click.stop="" class="ti-close tab-close"></span></div>
+            <!-- <section v-show="isActive" :aria-hidden="! isActive" class="tabs-component-panel" :id="computedId" role="tabpanel">
                 <slot />
-            </section>
-            <d-row>
+            </section> -->
+            <!-- <d-row>
                 <d-col lg v-for="(stats, idx) in smallStats" :key="idx" class="mb-3">
                     <small-stats :id="`small-stats-${idx}`" variation="1" :chart-data="stats.datasets" :label="stats.label" :value="stats.value" :percentage="stats.percentage" :increase="stats.increase" :decrease="stats.decrease" />
                 </d-col>
-            </d-row>
-
+            </d-row> -->
+           <!-- content -->
             <d-row>
-                <!-- Users Overview -->
+                <!-- mapa -->
                 <d-col lg="8" md="6" sm="12" class="mb-3">
-                    <bo-users-overview />
+                    <bo-users-overview :noAnillos="tab.noAnillos" :idTab="tab.Id" />
                 </d-col>
-
-                <!-- Users by Device (lite) -->
+                <!-- detalle lado derecho -->
                 <d-col lg="4" md="6" sm="12" class="mb-3">
-                    <bo-users-by-device />
+                    <bo-users-by-device :idTab="tab.Id"/>
                 </d-col>
             </d-row>
 
             <d-row>
                 <!-- Logs -->
-                <d-col lg="8" md="12" sm="12" class="mb-8">
+                <!-- <d-col lg="8" md="12" sm="12" class="mb-8">
                     <bo-new-draft />
-                </d-col>
+                </d-col> -->
 
                 <!-- Videos -->
-                <d-col lg="4" md="6" sm="12" class="mb-4">
+                <!-- <d-col lg="4" md="6" sm="12" class="mb-4">
                     <bo-discussions @approve="handleApprove" @reject="handleReject" @edit="handleEdit" @view-all-comments="handleViewAllComments" />
-                </d-col>
+                </d-col> -->
             </d-row>
+            <!-- content -->
           </v-tab>
       </vue-tabs>
     </div>
@@ -78,18 +79,18 @@ export default {
       removetab(index){
           this.tabs.splice(index, 1)
       },
-      addtab(event, mapAnillo){
-          this.tabs.push(mapAnillo);
-          this.$eventHub.$emit('agregaimg', event,mapAnillo);
-          $('.map').maphilight();
-          var table = document.getElementById('RingsTM').getElementsByClassName('map'); 
-            for(var i=0; i<table.length; i++){
-                if(table[i].tagName=='DIV'){
-                    if(table[i].style.display=='block'){
-                        table[i].style.display ='none';
-                    }
-                }
-            }
+      addtab(idConfig, noAnillos, mapAnillo){
+console.log("agregando tab...");
+         var nuevoTab = {
+              nombre:mapAnillo,
+              noAnillos:noAnillos,
+              id:idConfig
+          }
+          this.tabs.push(nuevoTab);
+          console.log(this.tabs.count);
+          //this.$eventHub.$emit('agregaimg', event,mapAnillo);
+          //$('.map').maphilight();
+          
       },
   },
   created() {

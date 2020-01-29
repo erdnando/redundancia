@@ -89,7 +89,7 @@
 </template>
 
 <script>
-import Chart from '../../utils/chart';
+//import Chart from '../../utils/chart';
 
 const defaultChartData = {
   datasets: [{
@@ -107,33 +107,19 @@ const defaultChartData = {
 export default {
   name: 'users-by-device',
   props: {
+    idTab:String,
     /**
        * The chart config.
        */
-    chartConfig: {
-      type: Object,
-      default() {
-        return {};
-      },
-    },
+   
     /**
        * The chart options.
        */
-    chartOptions: {
-      type: Object,
-      default() {
-        return {};
-      },
-    },
+    
     /**
        * The chart data.
        */
-    chartData: {
-      type: Object,
-      default() {
-        return defaultChartData;
-      },
-    },
+    
     /**
        * The chart title.
        */
@@ -143,30 +129,9 @@ export default {
     },
   },
   mounted() {
-    const chartConfig = {
-      type: 'pie',
-      data: this.chartData,
-      options: {
-        ...{
-          legend: {
-            position: 'bottom',
-            labels: {
-              padding: 25,
-              boxWidth: 20,
-            },
-          },
-          cutoutPercentage: 0,
-          tooltips: {
-            custom: false,
-            mode: 'index',
-            position: 'nearest',
-          },
-        },
-        ...this.chartOptions,
-      },
-    };
+   
 
-    new Chart(this.$refs.canvas, chartConfig);
+    
   },
 };
 </script>

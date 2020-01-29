@@ -46,14 +46,14 @@
                     <tbody>
                       <tr>
                         <td>
-                          <a href="#" @click="Iniciar('2','GDL_CANADA')">GDL_CANADA (corriendo...)</a>
+                          <a href="#" @click="cargarTab(1,'2','GDL_CANADA')">GDL_CANADA (corriendo...)</a>
                           </td>
                       </tr>
                       <tr>
-                        <td><a href="#" v-on:click="Iniciar('3','dvAnillo3')">PACHUCA SOTO</a></td>
+                        <td><a href="#" v-on:click="cargarTab(2,'3','PACHUCA SOTO')">PACHUCA SOTO</a></td>
                       </tr>
                       <tr>
-                        <td><a href="#" v-on:click="Iniciar('4','dvAnillo4')">PACHUCA CENTRO 2</a></td>
+                        <td><a href="#" v-on:click="cargarTab(3,'4','PACHUCA CENTRO 2')">PACHUCA CENTRO 2</a></td>
                       </tr>
                     </tbody>
                   </table>
@@ -120,9 +120,9 @@ export default {
     handleToggleSidebar() {
       this.sidebarVisible = !this.sidebarVisible;
     },
-    Iniciar: function (event,mapAnillo) {
+    cargarTab: function (idConfig, noAnillos,mapAnillo) {
       //this.$refs.childRef.childMethod('addtab');
-      this.$eventHub.$emit('addtab', event,mapAnillo);
+      this.$eventHub.$emit('addtab',idConfig, noAnillos,mapAnillo);
       // var table = document.getElementById('RingsTM').getElementsByClassName('map') 
       // for(var i=0; i<table.length; i++){
       //     if(table[i].tagName=='DIV'){
