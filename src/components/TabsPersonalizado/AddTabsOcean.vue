@@ -9,7 +9,7 @@
             </section> -->
             <!-- <d-row>
                 <d-col lg v-for="(stats, idx) in smallStats" :key="idx" class="mb-3">
-                    <small-stats :id="`small-stats-${idx}`" variation="1" :chart-data="stats.datasets" :label="stats.label" :value="stats.value" :percentage="stats.percentage" :increase="stats.increase" :decrease="stats.decrease" />
+                    <SmallStats :id="`small-stats-${idx}`" variation="1" :chart-data="stats.datasets" :label="stats.label" :value="stats.value" :percentage="stats.percentage" :increase="stats.increase" :decrease="stats.decrease" />
                 </d-col>
             </d-row> -->
            <!-- content -->
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+
 import Vue from 'vue';
 import {VueTabs, VTab} from 'vue-nav-tabs';
 import 'vue-nav-tabs/themes/vue-tabs.css';
@@ -52,31 +53,44 @@ import UsersByDevice from '@/components/blog/UsersByDeviceLite.vue';
 import NewDraft from '@/components/blog/NewDraft.vue';
 import Discussions from '@/components/blog/Discussions.vue';
 
-
-
 export default {
     name:"AddTabOcean",
     components: {
-    VueTabs,
-    VTab,
-    SmallStats,
-    boUsersOverview: UsersOverview,
-    boUsersByDevice: UsersByDevice,
-    boNewDraft: NewDraft,
-    boDiscussions: Discussions,
-  },
-  install(Vue) {
+        VueTabs,
+        VTab,
+        SmallStats,
+        boUsersOverview: UsersOverview,
+        boUsersByDevice: UsersByDevice,
+        boNewDraft: NewDraft,
+        boDiscussions: Discussions,
+    },
+    install(Vue) {
         Vue.component('tab', VTab);
         Vue.component('tabs', VueTabs);
-  },
-  data(){
-    return {
-        tabs:  [],
-        tabCounter: 0
-    };
-  },
-  methods: {
-      removetab(index){
+    },
+    data(){
+        return {
+            tabs:  [],
+            tabCounter: 0,
+            dateRange: {
+                from: null,
+                to: null,
+            },
+            cronometro: {
+                tiempo: {
+                    hora: 0,
+                    minuto: 0,
+                    segundo: 0,
+                },
+                listaDeTiempos: [],
+                nombre: 'Cronometro',
+                tiempoActivo: false,
+                intervalo: null,
+            },
+        };
+    },
+    methods: {
+        removetab(index){
           this.tabs.splice(index, 1)
       },
       addtab(idConfig, noAnillos, mapAnillo){

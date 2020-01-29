@@ -157,10 +157,7 @@ export default {
     }
   },
   methods:{
-    AgregaImg(event,mapAnillo){
-      alert('holauser');
-      this.divImg='user2';
-    },
+    
   },
   mounted() {
     console.log("on mounted debo pintar:"+ this.noAnillos);
@@ -172,9 +169,6 @@ export default {
     console.log("on created debo pintar:"+ this.noAnillos);
    // this.$eventHub.$on('agregaimg', this.AgregaImg);
   },
-  beforeDestroy() {
-    this.$eventHub.$off('agregaimg');
-  }, 
 };
 </script>
 
