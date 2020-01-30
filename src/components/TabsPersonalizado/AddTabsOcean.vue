@@ -4,13 +4,13 @@
           <v-tab v-for="(tabx,id) in tabsArray" :key="id">
               <!-- pestanias -->
             <div slot="title">{{tabx.nombre}} <span @click.stop="" class="ti-close tab-close"></span></div>
-            <!-- <section v-show="isActive" :aria-hidden="! isActive" class="tabs-component-panel" :id="computedId" role="tabpanel">
+            <section v-show="isActive" :aria-hidden="! isActive" class="tabs-component-panel" :id="computedId" role="tabpanel">
                 <slot />
-            </section> -->
+            </section>
             <d-row>
-                <!-- <d-col lg v-for="(stats, idx) in smallStats" :key="idx" class="mb-3">
+                <d-col lg v-for="(stats, idx) in smallStats" :key="idx" class="mb-3">
                     <SmallStats :id="`small-stats-${idx}`" variation="1" :chart-data="stats.datasets" :label="stats.label" :value="stats.value" :percentage="stats.percentage" :increase="stats.increase" :decrease="stats.decrease" />
-                </d-col> -->
+                </d-col>
             </d-row> 
            <!-- content -->
             <d-row>
@@ -45,8 +45,8 @@
 
 import Vue from 'vue';
 import {VueTabs, VTab} from 'vue-nav-tabs';
-// import 'vue-nav-tabs/themes/vue-tabs.css';
-// import 'vue-nav-tabs/dist/vue-tabs.js';
+import 'vue-nav-tabs/themes/vue-tabs.css';
+import 'vue-nav-tabs/dist/vue-tabs.js';
 import SmallStats from '@/components/common/SmallStats.vue';
 import UsersOverview from '@/components/blog/UsersOverview.vue';
 import UsersByDevice from '@/components/blog/UsersByDeviceLite.vue';
