@@ -1,26 +1,26 @@
 <template>
     <div id="AddTabOcean">
       <vue-tabs>
-          <v-tab v-for="(tab) in tabs" :key="tab.id">
+          <v-tab v-for="(tabx,id) in tabsArray" :key="id">
               <!-- pestanias -->
-            <div slot="title">{{tab.nombre}} <span @click.stop="" class="ti-close tab-close"></span></div>
+            <div slot="title">{{tabx.nombre}} <span @click.stop="" class="ti-close tab-close"></span></div>
             <!-- <section v-show="isActive" :aria-hidden="! isActive" class="tabs-component-panel" :id="computedId" role="tabpanel">
                 <slot />
             </section> -->
             <d-row>
-                <d-col lg v-for="(stats, idx) in smallStats" :key="idx" class="mb-3">
+                <!-- <d-col lg v-for="(stats, idx) in smallStats" :key="idx" class="mb-3">
                     <SmallStats :id="`small-stats-${idx}`" variation="1" :chart-data="stats.datasets" :label="stats.label" :value="stats.value" :percentage="stats.percentage" :increase="stats.increase" :decrease="stats.decrease" />
-                </d-col>
+                </d-col> -->
             </d-row> 
            <!-- content -->
             <d-row>
                 <!-- mapa -->
                 <d-col lg="8" md="6" sm="12" class="mb-3">
-                    <bo-users-overview :noAnillos="tab.noAnillos" :idTab="tab.Id" />
+                    <bo-users-overview :noAnillos="tabx.noAnillos" :idTab="tabx.Id" />
                 </d-col>
                 <!-- detalle lado derecho -->
                 <d-col lg="4" md="6" sm="12" class="mb-3">
-                    <bo-users-by-device :idTab="tab.Id"/>
+                    <bo-users-by-device :idTab="tabx.Id"/>
                 </d-col>
             </d-row>
 
@@ -45,8 +45,8 @@
 
 import Vue from 'vue';
 import {VueTabs, VTab} from 'vue-nav-tabs';
-import 'vue-nav-tabs/themes/vue-tabs.css';
-import 'vue-nav-tabs/dist/vue-tabs.js';
+// import 'vue-nav-tabs/themes/vue-tabs.css';
+// import 'vue-nav-tabs/dist/vue-tabs.js';
 import SmallStats from '@/components/common/SmallStats.vue';
 import UsersOverview from '@/components/blog/UsersOverview.vue';
 import UsersByDevice from '@/components/blog/UsersByDeviceLite.vue';
@@ -64,13 +64,9 @@ export default {
         boNewDraft: NewDraft,
         boDiscussions: Discussions,
     },
-    install(Vue) {
-        Vue.component('tab', VTab);
-        Vue.component('tabs', VueTabs);
-    },
     data(){
         return {
-            tabs:  [],
+            tabsArray:  [],
             tabCounter: 0,
             dateRange: {
                 from: null,
@@ -94,19 +90,19 @@ export default {
           this.tabs.splice(index, 1)
       },
       addtab(idConfig, noAnillos, mapAnillo){
-console.log("agregando tab...");
+        console.log("agregando tab...");
          var nuevoTab = {
+              id:idConfig,
               nombre:mapAnillo,
-              noAnillos:noAnillos,
-              id:idConfig
+              noAnillos:noAnillos
           }
-          this.tabs.push(nuevoTab);
-          console.log(this.tabs.count);
+          this.tabsArray.push(nuevoTab);
+          //console.log(this.tabsArray);
           //this.$eventHub.$emit('agregaimg', event,mapAnillo);
           //$('.map').maphilight();
           
       },
-      handleApprove(id) {
+    handleApprove(id) {
       alert(`Approving discussion id: ${id}`); // eslint-disable-line no-alert
     },
     handleReject(id) {
@@ -144,11 +140,22 @@ console.log("agregando tab...");
     },
   },
   created() {
-    this.$eventHub.$on('addtab', this.addtab);
+    //this.$eventHub.$on('addtab', this.addtab);
+    this.$eventHub.$on('addtab', (idConfig, noAnillos, mapAnillo) => {
+       console.log("agregando tab...");
+         var nuevoTab = {
+              nombre:mapAnillo,
+              noAnillos:noAnillos,
+              id:idConfig
+          }
+          this.tabsArray.push(nuevoTab);
+          console.log(this.tabsArray);
+    });
+
     this.iniciarCronometro();
   },
   beforeDestroy() {
-    this.$eventHub.$off('addtab');
+   // this.$eventHub.$off('addtab');
   },
   computed: {
     smallStats() {

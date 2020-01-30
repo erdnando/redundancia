@@ -6,7 +6,7 @@
         <span class="text-uppercase page-subtitle">Ejecución</span>
       </d-col>
     </d-row>  
-    <AddTabOcean :can-I="childState" v-on:increment="lockChild"></AddTabOcean>
+    <AddTabOcean ></AddTabOcean>
     <!-- Small Stats Blocks -->
     
   </d-container>
@@ -50,7 +50,26 @@ export default {
     this.iniciarCronometro();
   },
   methods: {
-    
+    iniciarCronometro() {
+      setInterval(() => {
+        this.incrementarTiempo();
+      }, 1000);
+    },
+    incrementarTiempo() {
+      const obj = this.cronometro;
+      // eslint-disable-next-line no-plusplus
+      obj.tiempo.segundo++;
+      if (obj.tiempo.segundo === 60) {
+        // eslint-disable-next-line no-plusplus
+        obj.tiempo.minuto++;
+        obj.tiempo.segundo = 0;
+      }
+      if (obj.tiempo.minuto === 60) {
+        // eslint-disable-next-line no-plusplus
+        obj.tiempo.hora++;
+        obj.tiempo.minuto = 0;
+      }
+    },
   },
   
 };

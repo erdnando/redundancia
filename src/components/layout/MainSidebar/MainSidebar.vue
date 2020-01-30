@@ -50,10 +50,14 @@
                           </td>
                       </tr>
                       <tr>
-                        <td><a href="#" v-on:click="cargarTab(2,'3','PACHUCA SOTO')">PACHUCA SOTO</a></td>
+                        <td>
+                          <a href="#" @click="cargarTab(2,'3','PACHUCA SOTO')">PACHUCA SOTO</a>
+                        </td>
                       </tr>
                       <tr>
-                        <td><a href="#" v-on:click="cargarTab(3,'4','PACHUCA CENTRO 2')">PACHUCA CENTRO 2</a></td>
+                        <td>
+                          <a href="#" @click="cargarTab(3,'4','PACHUCA CENTRO 2')">PACHUCA CENTRO 2</a>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
