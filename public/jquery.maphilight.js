@@ -7,6 +7,7 @@
 })(this, function($) {
 	var has_VML, has_canvas, create_canvas_for, add_shape_to, clear_canvas, shape_from_area,
 		canvas_style, hex_to_decimal, css3color, is_image_loaded, options_from_area;
+		var arrayCanvas=[];
 
 	has_canvas = !!document.createElement('canvas').getContext;
 
@@ -32,7 +33,7 @@
 			return 'rgba('+hex_to_decimal(color.substr(0,2))+','+hex_to_decimal(color.substr(2,2))+','+hex_to_decimal(color.substr(4,2))+','+opacity+')';
 		};
 		create_canvas_for = function(img) {
-			var c = $('<canvas style="width:'+$(img).width()+'px;height:'+$(img).height()+'px;"></canvas>').get(0);
+			var c = $('<canvas id="canvas'+ img.id.replace('Anillo','') +'" style="width:'+$(img)[0].width+'px;height:'+$(img)[0].height+'px;"></canvas>').get(0);
 			c.getContext("2d").clearRect(0, 0, $(img).width(), $(img).height());
 			return c;
 		};
@@ -213,7 +214,10 @@
 		}
 
 		return this.each(function(no,fu) {
+			
 			var img, wrap, options, map, canvas, canvas_always, highlighted_shape, usemap;
+			
+
 			img = $(this);
 
 			if(!is_image_loaded(this)) {
@@ -223,160 +227,178 @@
 				}, 200);
 			}
 
-			options = $.extend({}, opts, $.metadata ? img.metadata() : false, img.data('maphilight'));
+			var existe = 0;
 
-			// jQuery bug with Opera, results in full-url#usemap being returned from jQuery's attr.
-			// So use raw getAttribute instead.
-			usemap = img.get(0).getAttribute('usemap');
-
-			if (!usemap) {
-				return;
-			}
-
-			map = $('map[name="'+usemap.substr(1)+'"]');
-
-			if(!(img.is('img,input[type="image"]') && usemap && map.length > 0)) {
-				return;
-			}
-
-			if(img.hasClass('maphilighted')) {
-				// We're redrawing an old map, probably to pick up changes to the options.
-				// Just clear out all the old stuff.
-				var wrapper = img.parent();
-				img.insertBefore(wrapper);
-				wrapper.remove();
-				$(map).unbind('.maphilight');
-			}
-
-			wrap = $('<div></div>').css({
-				display:'block',
-				backgroundImage:'url("'+this.src+'")',
-				backgroundSize:'contain',
-				position:'relative',
-				padding:0,
-				width:this.width,
-				height:this.height,
-				zoom:'80%'
-				});
-			if(options.wrapClass) {
-				if(options.wrapClass === true) {
-					wrap.addClass($(this).attr('class'));
-					wrap[0].id = 'dv' + this.id;
-					wrap[0].name = 'dv' + this.id;
-				} else {
-					wrap.addClass(options.wrapClass);
-					wrap[0].id = 'dv' + this.id;
-					wrap[0].name = 'dv' + this.id;
+			for(r = 0; r< arrayCanvas.length; r++){
+				if(arrayCanvas[r].idCanvas == fu.id.replace('Anillo','canvas')){
+					existe=1;
 				}
 			}
-			// Firefox has a bug that prevents tabbing into the image map if
-			// we set opacity of the image to 0, but very nearly 0 works!
-			img.before(wrap).css('opacity', 0.0000000001).css(canvas_style).remove();
-			if(has_VML) { img.css('filter', 'Alpha(opacity=0)'); }
-			wrap.append(img);
+			if(existe==0){
+				
+				
+				options = $.extend({}, opts, $.metadata ? img.metadata() : false, img.data('maphilight'));
 
-			canvas = create_canvas_for(this);
-			$(canvas).css(canvas_style);
-			canvas.height = this.height;
-			canvas.width = this.width;
+				// jQuery bug with Opera, results in full-url#usemap being returned from jQuery's attr.
+				// So use raw getAttribute instead.
+				usemap = img.get(0).getAttribute('usemap');
 
-			$(map).bind('alwaysOn.maphilight', function() {
-				// Check for areas with alwaysOn set. These are added to a *second* canvas,
-				// which will get around flickering during fading.
-				if(canvas_always) {
-					clear_canvas(canvas_always);
+				if (!usemap) {
+					return;
 				}
-				if(!has_canvas) {
-					$(canvas).empty();
+
+				map = $('map[name="'+usemap.substr(1)+'"]');
+
+				if(!(img.is('img,input[type="image"]') && usemap && map.length > 0)) {
+					return;
 				}
-				$(map).find('area[coords]').each(function() {
-					var shape, area_options;
-					area_options = options_from_area(this, options);
-					if(area_options.alwaysOn) {
-						if(!canvas_always && has_canvas) {
-							canvas_always = create_canvas_for(img[0]);
-							$(canvas_always).css(canvas_style);
-							canvas_always.width = img[0].width;
-							canvas_always.height = img[0].height;
-							img.before(canvas_always);
-						}
-						area_options.fade = area_options.alwaysOnFade; // alwaysOn shouldn't fade in initially
-						shape = shape_from_area(this);
-						if (has_canvas) {
-							add_shape_to(canvas_always, shape[0], shape[1], area_options, "");
-						} else {
-							add_shape_to(canvas, shape[0], shape[1], area_options, "");
-						}
+
+				if(img.hasClass('maphilighted')) {
+					// We're redrawing an old map, probably to pick up changes to the options.
+					// Just clear out all the old stuff.
+					var wrapper = img.parent();
+					img.insertBefore(wrapper);
+					wrapper.remove();
+					$(map).unbind('.maphilight');
+				}
+
+				wrap = $('<div></div>').css({
+					display:'block',
+					backgroundImage:'url("'+this.src+'")',
+					backgroundSize:'contain',
+					position:'relative',
+					padding:0,
+					width:this.width,
+					height:this.height,
+					zoom:'80%'
+					});
+				if(options.wrapClass) {
+					if(options.wrapClass === true) {
+						wrap.addClass($(this).attr('class'));
+						wrap[0].id = 'dv' + this.id;
+						wrap[0].name = 'dv' + this.id;
+					} else {
+						wrap.addClass(options.wrapClass);
+						wrap[0].id = 'dv' + this.id;
+						wrap[0].name = 'dv' + this.id;
 					}
-				});
-			}).trigger('alwaysOn.maphilight')
-			// .bind('mouseover.maphilight focusin.maphilight', function(e) {
-			// 	var shape, area_options, area = e.target;
-			// 	area_options = options_from_area(area, options);
-			// 	if(!area_options.neverOn && !area_options.alwaysOn) {
-			// 		shape = shape_from_area(area);
-			// 		add_shape_to(canvas, shape[0], shape[1], area_options, "highlighted");
-			// 		if(area_options.groupBy) {
-			// 			var areas;
-			// 			// two ways groupBy might work; attribute and selector
-			// 			if(/^[a-zA-Z][\-a-zA-Z]+$/.test(area_options.groupBy)) {
-			// 				areas = map.find('area['+area_options.groupBy+'="'+$(area).attr(area_options.groupBy)+'"]');
-			// 			} else {
-			// 				areas = map.find(area_options.groupBy);
-			// 			}
-			// 			var first = area;
-			// 			areas.each(function() {
-			// 				if(this != first) {
-			// 					var subarea_options = options_from_area(this, options);
-			// 					if(!subarea_options.neverOn && !subarea_options.alwaysOn) {
-			// 						var shape = shape_from_area(this);
-			// 						add_shape_to(canvas, shape[0], shape[1], subarea_options, "highlighted");
-			// 					}
-			// 				}
-			// 			});
-			// 		}
-			// 		// workaround for IE7, IE8 not rendering the final rectangle in a group
-			// 		if(!has_canvas) {
-			// 			$(canvas).append('<v:rect></v:rect>');
-			// 		}
-			// 	}
-			// })
-			.bind('mouseout.maphilight ', function(e) { clear_canvas(canvas); })
-			.bind('click.maphilight', function(e) {
-				var shape, area_options, area = e.target;
-				area_options = options_from_area(area, options);
-				if(!area_options.neverOn && !area_options.alwaysOn) {
-					shape = shape_from_area(area);
-					add_shape_to(canvas, shape[0], shape[1], area_options, "highlighted");
-					if(area_options.groupBy) {
-						var areas;
-						// two ways groupBy might work; attribute and selector
-						if(/^[a-zA-Z][\-a-zA-Z]+$/.test(area_options.groupBy)) {
-							areas = map.find('area['+area_options.groupBy+'="'+$(area).attr(area_options.groupBy)+'"]');
-						} else {
-							areas = map.find(area_options.groupBy);
-						}
-						var first = area;
-						areas.each(function() {
-							if(this != first) {
-								var subarea_options = options_from_area(this, options);
-								if(!subarea_options.neverOn && !subarea_options.alwaysOn) {
-									var shape = shape_from_area(this);
-									add_shape_to(canvas, shape[0], shape[1], subarea_options, "highlighted");
-								}
-							}
-						});
+				}
+				// Firefox has a bug that prevents tabbing into the image map if
+				// we set opacity of the image to 0, but very nearly 0 works!
+				img.before(wrap).css('opacity', 0.0000000001).css(canvas_style).remove();
+				if(has_VML) { img.css('filter', 'Alpha(opacity=0)'); }
+				wrap.append(img);
+
+				canvas = create_canvas_for(this);
+				$(canvas).css(canvas_style);
+				canvas.height = this.height;
+				canvas.width = this.width;
+				arrayCanvas.push({idCanvas:canvas.id,canvas});			
+
+				$(map).bind('alwaysOn.maphilight', function() {
+					// Check for areas with alwaysOn set. These are added to a *second* canvas,
+					// which will get around flickering during fading.
+					if(canvas_always) {
+						clear_canvas(canvas_always);
 					}
-					// workaround for IE7, IE8 not rendering the final rectangle in a group
 					if(!has_canvas) {
-						$(canvas).append('<v:rect></v:rect>');
+						$(canvas).empty();
 					}
-				}
-			});
+					$(map).find('area[coords]').each(function() {
+						var shape, area_options;
+						area_options = options_from_area(this, options);
+						if(area_options.alwaysOn) {
+							if(!canvas_always && has_canvas) {
+								canvas_always = create_canvas_for(img[0]);
+								$(canvas_always).css(canvas_style);
+								canvas_always.width = img[0].width;
+								canvas_always.height = img[0].height;
+								img.before(canvas_always);
+							}
+							area_options.fade = area_options.alwaysOnFade; // alwaysOn shouldn't fade in initially
+							shape = shape_from_area(this);
+							if (has_canvas) {
+								add_shape_to(canvas_always, shape[0], shape[1], area_options, "");
+							} else {
+								add_shape_to(canvas, shape[0], shape[1], area_options, "");
+							}
+						}
+					});
+				}).trigger('alwaysOn.maphilight')
+				// .bind('mouseover.maphilight focusin.maphilight', function(e) {
+				// 	var shape, area_options, area = e.target;
+				// 	area_options = options_from_area(area, options);
+				// 	if(!area_options.neverOn && !area_options.alwaysOn) {
+				// 		shape = shape_from_area(area);
+				// 		add_shape_to(canvas, shape[0], shape[1], area_options, "highlighted");
+				// 		if(area_options.groupBy) {
+				// 			var areas;
+				// 			// two ways groupBy might work; attribute and selector
+				// 			if(/^[a-zA-Z][\-a-zA-Z]+$/.test(area_options.groupBy)) {
+				// 				areas = map.find('area['+area_options.groupBy+'="'+$(area).attr(area_options.groupBy)+'"]');
+				// 			} else {
+				// 				areas = map.find(area_options.groupBy);
+				// 			}
+				// 			var first = area;
+				// 			areas.each(function() {
+				// 				if(this != first) {
+				// 					var subarea_options = options_from_area(this, options);
+				// 					if(!subarea_options.neverOn && !subarea_options.alwaysOn) {
+				// 						var shape = shape_from_area(this);
+				// 						add_shape_to(canvas, shape[0], shape[1], subarea_options, "highlighted");
+				// 					}
+				// 				}
+				// 			});
+				// 		}
+				// 		// workaround for IE7, IE8 not rendering the final rectangle in a group
+				// 		if(!has_canvas) {
+				// 			$(canvas).append('<v:rect></v:rect>');
+				// 		}
+				// 	}
+				// })
+				.bind('mouseout.maphilight ', function(e) { clear_canvas(canvas); })
+				.bind('click.maphilight', function(e) {
+					var shape, area_options, area = e.target;
+					area_options = options_from_area(area, options);
+					if(!area_options.neverOn && !area_options.alwaysOn) {
+						shape = shape_from_area(area);
+						var canvas2;
+						for(r = 0; r< arrayCanvas.length; r++){
+							if(arrayCanvas[r].idCanvas == 'canvas' + area.id.substr(0,1)){
+								canvas2 = arrayCanvas[r].canvas;
+							}
+						}
+						add_shape_to(canvas2, shape[0], shape[1], area_options, "highlighted");
+						if(area_options.groupBy) {
+							var areas;
+							// two ways groupBy might work; attribute and selector
+							if(/^[a-zA-Z][\-a-zA-Z]+$/.test(area_options.groupBy)) {
+								areas = map.find('area['+area_options.groupBy+'="'+$(area).attr(area_options.groupBy)+'"]');
+							} else {
+								areas = map.find(area_options.groupBy);
+							}
+							var first = area;
+							areas.each(function() {
+								if(this != first) {
+									var subarea_options = options_from_area(this, options);
+									if(!subarea_options.neverOn && !subarea_options.alwaysOn) {
+										var shape = shape_from_area(this);
+										add_shape_to(canvas, shape[0], shape[1], subarea_options, "highlighted");
+									}
+								}
+							});
+						}
+						// workaround for IE7, IE8 not rendering the final rectangle in a group
+						if(!has_canvas) {
+							$(canvas).append('<v:rect></v:rect>');
+						}
+					}
+				});
 
-			img.before(canvas); // if we put this after, the mouseover events wouldn't fire.
+				img.before(canvas); // if we put this after, the mouseover events wouldn't fire.
 
-			img.addClass('maphilighted');
+				img.addClass('maphilighted');
+			}
 		});
 	};
 	$.fn.maphilight.defaults = {

@@ -46,17 +46,17 @@
                     <tbody>
                       <tr>
                         <td>
-                          <a href="#" @click="cargarTab(1,'2','GDL_CANADA')">GDL_CANADA (corriendo...)</a>
+                          <a href="#" @click="cargarTab('2','2','GDL_CANADA')">GDL_CANADA (corriendo...)</a>
                           </td>
                       </tr>
                       <tr>
                         <td>
-                          <a href="#" @click="cargarTab(2,'3','PACHUCA SOTO')">PACHUCA SOTO</a>
+                          <a href="#" @click="cargarTab('3','3','PACHUCA SOTO')">PACHUCA SOTO</a>
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <a href="#" @click="cargarTab(3,'4','PACHUCA CENTRO 2')">PACHUCA CENTRO 2</a>
+                          <a href="#" @click="cargarTab('4','4','PACHUCA CENTRO 2')">PACHUCA CENTRO 2</a>
                         </td>
                       </tr>
                     </tbody>
@@ -126,7 +126,14 @@ export default {
     },
     cargarTab: function (idConfig, noAnillos,mapAnillo) {
       //this.$refs.childRef.childMethod('addtab');
-      this.$eventHub.$emit('addtab',idConfig, noAnillos,mapAnillo);
+      var els = document.getElementById("t-" + idConfig);
+      if(!els){
+        this.$eventHub.$emit('addtab',idConfig, noAnillos,mapAnillo);
+      }
+      else{
+        document.getElementById("t-" + idConfig).click();
+      }
+      
       // var table = document.getElementById('RingsTM').getElementsByClassName('map') 
       // for(var i=0; i<table.length; i++){
       //     if(table[i].tagName=='DIV'){

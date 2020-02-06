@@ -1,41 +1,41 @@
 <template>
     <div id="AddTabOcean">
       <vue-tabs>
-          <v-tab v-for="(tabx,id) in tabsArray" :key="id">
+          <v-tab v-for="tabx in tabsArray" :key="tabx" v-bind="tabx" class="liBusqueda">
               <!-- pestanias -->
             <div slot="title">{{tabx.nombre}} <span @click.stop="" class="ti-close tab-close"></span></div>
-            <section v-show="isActive" :aria-hidden="! isActive" class="tabs-component-panel" :id="computedId" role="tabpanel">
-                <slot />
+            <section class="tabs-component-panel" role="tabpanel">
+                <d-row>
+                    <d-col lg v-for="(stats, idx) in smallStats" :key="idx" class="mb-3">
+                        <SmallStats :id="`small-stats-${idx}`" variation="1" :chart-data="stats.datasets" :label="stats.label" :value="stats.value" :percentage="stats.percentage" :increase="stats.increase" :decrease="stats.decrease" />
+                    </d-col>
+                </d-row> 
+              <!-- content -->
+                <d-row>
+                    <!-- mapa -->
+                    <d-col lg="8" md="6" sm="12" class="mb-3">
+                        <bo-users-overview :noAnillos="tabx.noAnillos" :idTab="tabx.Id" />
+                    </d-col>
+                    <!-- detalle lado derecho -->
+                    <d-col lg="4" md="6" sm="12" class="mb-3">
+                        <bo-users-by-device :idTab="tabx.Id"/>
+                    </d-col>
+                </d-row>
+
+                <d-row>
+                    <!-- Logs -->
+                    <!-- <d-col lg="8" md="12" sm="12" class="mb-8">
+                        <bo-new-draft />
+                    </d-col> -->
+
+                    <!-- Videos -->
+                    <!-- <d-col lg="4" md="6" sm="12" class="mb-4">
+                        <bo-discussions @approve="handleApprove" @reject="handleReject" @edit="handleEdit" @view-all-comments="handleViewAllComments" />
+                    </d-col> -->
+                </d-row>
+                <!-- content -->
             </section>
-            <d-row>
-                <d-col lg v-for="(stats, idx) in smallStats" :key="idx" class="mb-3">
-                    <SmallStats :id="`small-stats-${idx}`" variation="1" :chart-data="stats.datasets" :label="stats.label" :value="stats.value" :percentage="stats.percentage" :increase="stats.increase" :decrease="stats.decrease" />
-                </d-col>
-            </d-row> 
-           <!-- content -->
-            <d-row>
-                <!-- mapa -->
-                <d-col lg="8" md="6" sm="12" class="mb-3">
-                    <bo-users-overview :noAnillos="tabx.noAnillos" :idTab="tabx.Id" />
-                </d-col>
-                <!-- detalle lado derecho -->
-                <d-col lg="4" md="6" sm="12" class="mb-3">
-                    <bo-users-by-device :idTab="tabx.Id"/>
-                </d-col>
-            </d-row>
-
-            <d-row>
-                <!-- Logs -->
-                <!-- <d-col lg="8" md="12" sm="12" class="mb-8">
-                    <bo-new-draft />
-                </d-col> -->
-
-                <!-- Videos -->
-                <!-- <d-col lg="4" md="6" sm="12" class="mb-4">
-                    <bo-discussions @approve="handleApprove" @reject="handleReject" @edit="handleEdit" @view-all-comments="handleViewAllComments" />
-                </d-col> -->
-            </d-row>
-            <!-- content -->
+            
           </v-tab>
       </vue-tabs>
     </div>
@@ -72,6 +72,11 @@ export default {
                 from: null,
                 to: null,
             },
+            nuevoTab: {
+              id:'',
+              nombre:'',
+              noAnillos:''
+            },
             cronometro: {
                 tiempo: {
                     hora: 0,
@@ -90,16 +95,12 @@ export default {
           this.tabs.splice(index, 1)
       },
       addtab(idConfig, noAnillos, mapAnillo){
-        console.log("agregando tab...");
-         var nuevoTab = {
-              id:idConfig,
-              nombre:mapAnillo,
-              noAnillos:noAnillos
-          }
+          console.log("agregando tab...");
+          nuevoTab.id = idConfig;
+          nuevoTab.nombre = mapAnillo;
+          nuevoTab.noAnillos = noAnillos;
+          
           this.tabsArray.push(nuevoTab);
-          //console.log(this.tabsArray);
-          //this.$eventHub.$emit('agregaimg', event,mapAnillo);
-          //$('.map').maphilight();
           
       },
     handleApprove(id) {
@@ -114,7 +115,7 @@ export default {
     handleViewAllComments() {
       alert('Viewing all comments!'); // eslint-disable-line no-alert
     },
-    iniciarCronometro() {
+    iniciarCronometro(nomCronometro) {
       setInterval(() => {
         this.incrementarTiempo();
       }, 1000);
@@ -149,10 +150,9 @@ export default {
               id:idConfig
           }
           this.tabsArray.push(nuevoTab);
+          //this.iniciarCronometro();
           console.log(this.tabsArray);
     });
-
-    this.iniciarCronometro();
   },
   beforeDestroy() {
    // this.$eventHub.$off('addtab');
@@ -190,7 +190,7 @@ export default {
       }, {
         label: 'Despues',
         value: '0%',
-        percentage: 'NA%',
+        percentage: '0%',
         increase: false,
         decrease: true,
         labels: ['Label', 'Label', 'Label', 'Label', 'Label', 'Label'],
@@ -205,7 +205,7 @@ export default {
       }, {
         label: 'Ejecuciones',
         value: '2 de 3',
-        percentage: '49%%',
+        percentage: '49%',
         increase: false,
         decrease: true,
         labels: ['Label', 'Label', 'Label', 'Label', 'Label', 'Label'],

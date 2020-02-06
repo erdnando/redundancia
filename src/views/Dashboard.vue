@@ -26,51 +26,7 @@ export default {
     Vue,
     //TabsOcean,
     AddTabOcean
-  },
-  data() {
-    return {
-      dateRange: {
-        from: null,
-        to: null,
-      },
-      cronometro: {
-        tiempo: {
-          hora: 0,
-          minuto: 0,
-          segundo: 0,
-        },
-        listaDeTiempos: [],
-        nombre: 'Cronometro',
-        tiempoActivo: false,
-        intervalo: null,
-      },
-    };
-  },
-  created() {
-    this.iniciarCronometro();
-  },
-  methods: {
-    iniciarCronometro() {
-      setInterval(() => {
-        this.incrementarTiempo();
-      }, 1000);
-    },
-    incrementarTiempo() {
-      const obj = this.cronometro;
-      // eslint-disable-next-line no-plusplus
-      obj.tiempo.segundo++;
-      if (obj.tiempo.segundo === 60) {
-        // eslint-disable-next-line no-plusplus
-        obj.tiempo.minuto++;
-        obj.tiempo.segundo = 0;
-      }
-      if (obj.tiempo.minuto === 60) {
-        // eslint-disable-next-line no-plusplus
-        obj.tiempo.hora++;
-        obj.tiempo.minuto = 0;
-      }
-    },
-  },
+  }
   
 };
 
