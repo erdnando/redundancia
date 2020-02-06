@@ -2,9 +2,10 @@
   <d-card class="card-small h-100">
 
     <!-- Card Header -->
-    <d-card-header class="border-bottom">
+    <d-card-header class="border-bottom" style="text-align:end;">
       <h6 class="m-0">{{ title }}</h6>
-      <button :id="'btn_Iniciar'+noAnillos" @click="stratTour(noAnillos)"> Iniciar </button>
+      <!-- <button :id="'btn_Iniciar'+noAnillos" @click="stratTour(noAnillos)"> Iniciar </button> -->
+      <button type="button" class="btn btn-outline-primary" :id="'btn_Iniciar'+noAnillos" @click="stratTour(noAnillos)"><i class="far fa-play-circle"></i> Inciar</button>
       <div class="block-handle"></div>
     </d-card-header>
 

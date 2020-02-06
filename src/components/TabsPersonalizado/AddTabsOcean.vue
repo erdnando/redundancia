@@ -115,7 +115,7 @@ export default {
     handleViewAllComments() {
       alert('Viewing all comments!'); // eslint-disable-line no-alert
     },
-    iniciarCronometro(nomCronometro) {
+    iniciarCronometro() {
       setInterval(() => {
         this.incrementarTiempo();
       }, 1000);
@@ -150,7 +150,7 @@ export default {
               id:idConfig
           }
           this.tabsArray.push(nuevoTab);
-          //this.iniciarCronometro();
+          this.iniciarCronometro();
           console.log(this.tabsArray);
     });
   },
